@@ -40,3 +40,9 @@ should be deducted, Rs.20 on weekend and Rs.10 on weekdays and at the end, a sum
 0, the game should begin again.
 
 These are the crux points of the procedure followed, For better understanding, refer code of this project.
+
+Note: Sincere apologies to everyone as I have not committed every single detail into the repository and worked individually. From now, I will be updating each and every change directly here.
+
+Feedback and improvements in the code will be encouraged greatly.
+
+Thank you.
