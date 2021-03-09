@@ -2,9 +2,9 @@ import java.util.*;
 
 abstract class SmartCard{
 	int currentbalance,depamount,remainingbalance;
-	abstract void Summary();
-	abstract void CheckBalance();
-	abstract void Payment();
+	abstract void Summary(); //prints initial, deposited and remaining balances
+	abstract void CheckBalance(); //checks if a user is permitted to play or not, minimum balance of Rs.10
+	abstract void Payment(); //Payment info is managed
 }
 
 class SmartCard1 extends SmartCard{
@@ -26,7 +26,7 @@ class SmartCard1 extends SmartCard{
 				remainingbalance=currentbalance+depamount;
 				try{
 					if(remainingbalance<0){
-						throw new NegativeBalanceException();
+						throw new NegativeBalanceException(); //throws an exception when the balance is negative
 					}
 				}
 				catch(NegativeBalanceException r){
@@ -36,7 +36,7 @@ class SmartCard1 extends SmartCard{
 			}
 			else if(a.contains("o")){
 				System.out.println("Thank you for your time");
-				System.exit(-1);
+				System.exit(-1); //Program is terminated
 			}
 			else{
 				System.out.println("Sorry, Try again");
@@ -52,14 +52,14 @@ class SmartCard1 extends SmartCard{
            	System.out.println("You have selected weekday to play!");
            	System.out.println("The cost to play is Rs.10");
            	System.out.println("Deducting amount...");
-           	remainingbalance=currentbalance-10;
+           	remainingbalance=currentbalance-10; //As user selected weekday, Rs.10 must be deducted from initial currentbalance
             Summary();
            }
            else if(option.contains("end")){
            	System.out.println("You have selected weekend to play!");
            	System.out.println("The cost to play is Rs.20");
            	System.out.println("Deducting amount...");
-           	remainingbalance=currentbalance-20;
+           	remainingbalance=currentbalance-20; //As user selected weekend, Rs.20 must be deducted from initial currentbalance
            	Summary();
            }
            else{
@@ -83,8 +83,7 @@ class SmartDemo{
 		for(;true;){
 			System.out.println("Enter your current balance: ");
 			Scanner sc = new Scanner(System.in);
-			//boolean b=sc.hasNextInt();
-			int c=(sc.hasNextInt())?1:0;
+			int c=(sc.hasNextInt())?1:0; //Coverts boolean into integer
 			switch(c){
 				case 1:
 				sm.currentbalance=sc.nextInt();
@@ -92,7 +91,7 @@ class SmartDemo{
 					sm.CheckBalance();
 				}
 				else{
-					java.util.ArrayList<String> GameList=new java.util.ArrayList<String>();
+			    java.util.ArrayList<String> GameList=new java.util.ArrayList<String>();
 		    	    System.out.println("You have sufficient money to play, select the Series given below:");
 		    	    GameList.add("Type G1 to start with G1");
 		    	    GameList.add("Type G10 to start with G10");
@@ -115,7 +114,7 @@ class SmartDemo{
 				case 0:
 				try{
 					if(!sc.hasNextInt()){
-						throw new IllegalArgumentException();
+						throw new IllegalArgumentException(); //if input is not an integer, it throws an exception
 					}
 				}
 				catch(IllegalArgumentException e){
@@ -123,7 +122,7 @@ class SmartDemo{
 				}
 				break;
 			}
-			System.out.println("Press 0 to exit, Press any number other than 0 to play again");
+			System.out.println("Press 0 to exit, Press any number other than 0 to play again"); //Exits if pressed 0 and continues if pressed any number other than 0
 			Scanner scan = new Scanner(System.in);
 			int e = scan.nextInt();
 		    try{
@@ -143,12 +142,12 @@ class SmartDemo{
 
 class RohithException extends InputMismatchException{
 	public String toString(){
-		return "You are playing again!";
+		return "You are playing again!"; //This is a user-defined exception
 	}
 }
 
 class NegativeBalanceException extends IllegalArgumentException{
 	public String toString(){
-		return "Sorry, You have negative balance, Deposit money to play!";
+		return "Sorry, You have negative balance, Deposit money to play!"; //this is a user-defined exception
 	}
 }
